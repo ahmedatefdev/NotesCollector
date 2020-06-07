@@ -1,0 +1,12 @@
+@import "colors";
+
+body {
+    background-color: $orange_primary;
+}
+
+.layout {
+    position: absolute;
+    background-color: $red_Wrong;
+    height: 100%;
+    width: 100%;
+}

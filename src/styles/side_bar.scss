@@ -1,0 +1,32 @@
+@import "colors.scss";
+@import "helper";
+
+.side_bar {
+    background-color: $light_dark;
+    box-shadow: 0px 0px 1px black;
+    height: 95%;
+    position: relative;
+    transition: $main_transition;
+}
+
+.side_bar--is-visible {
+    visibility: visible;
+    width: $sidebar_main_width;
+    left: 0;
+}
+.side_bar--is-hidden {
+    visibility: hidden;
+
+    left: -$sidebar_main_width;
+}
+@media screen and (max-width: 900px) {
+    .side_bar--is-visible {
+        visibility: visible;
+        width: 60%;
+        left: 0;
+    }
+    .side_bar--is-hidden {
+        visibility: hidden;
+        left: -60%;
+    }
+}
