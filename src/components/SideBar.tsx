@@ -6,7 +6,6 @@ interface Props {
 }
 // TODO: New Note
 // *** : add title 
-// *** : begin edit the new one 
 // *** : save new note for future update
 
 

@@ -11,11 +11,15 @@ interface State {
     sideBarIsVisible: boolean
 }
 
-// TODO: make responsive sidebar 
+// DONE: make responsive sidebar 
 ///// *** : add button for hide the side bar
 ///// *** : auto hide in mobile when the width is low
 /////     - when change make the content take all the width
 
+// TODO: save new note
+///// *** : make type for notes
+// *** : save note in the local storage
+// *** : begin edit the new one 
 // TODO: add main colors to all sections
 
 
@@ -34,7 +38,9 @@ class Main extends Component<Props, State> {
     handelSideBar(): void {
         this.setState({ ...this.state, sideBarIsVisible: !this.state.sideBarIsVisible })
     }
-
+    SaveNewNote(title: string): void {
+        this.setState({ ...this.state, sideBarIsVisible: !this.state.sideBarIsVisible })
+    }
     render() {
         return (
             <div className="layout">
