@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
-import '../styles/side_bar.scss'
+import '../../styles/side_bar.scss'
 import { FaPlusSquare, FaCheckSquare } from 'react-icons/fa'
+import { Note } from '../../types/Note'
+import NoteCard from './NoteCard'
+
 interface Props {
     sideBarIsVisible: boolean
     SaveNote: (title: string) => boolean
+    notes: Note[]
 }
 ///// DONE: New Note
 ///// *** : add title 
 ///// *** : save new note for future update
 
-// Show old Notes for use and edit
-
 // TODO: Old notes
+// *** : add card for each note 
+
 // *** : edit old one
 //     - edit title 
 // *** : delete old one
@@ -37,8 +41,6 @@ const SideBar = (props: Props) => {
                 }
                 value={title}
                 onKeyUp={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
                     if (e.key === "Enter")
                         if (props.SaveNote(title)) setTitle("")
                 }
@@ -46,11 +48,10 @@ const SideBar = (props: Props) => {
             <FaCheckSquare
                 size="2em"
                 onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
                     if (props.SaveNote(title)) setTitle("")
                 }
                 } />
+            {props.notes.map((note, i) => <NoteCard note={note} key={i} />)}
         </div >
     )
 }
