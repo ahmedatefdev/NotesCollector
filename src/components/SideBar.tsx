@@ -3,11 +3,13 @@ import '../styles/side_bar.scss'
 import { FaPlusSquare, FaCheckSquare } from 'react-icons/fa'
 interface Props {
     sideBarIsVisible: boolean
+    SaveNote: (title: string) => boolean
 }
-// TODO: New Note
-// *** : add title 
-// *** : save new note for future update
+///// DONE: New Note
+///// *** : add title 
+///// *** : save new note for future update
 
+// Show old Notes for use and edit
 
 // TODO: Old notes
 // *** : edit old one
@@ -35,16 +37,18 @@ const SideBar = (props: Props) => {
                 }
                 value={title}
                 onKeyUp={(e) => {
-                    if (e.key === "Enter") {
-                        console.log("ent");
-                        //! save the title 
-                    }
+                    e.preventDefault()
+                    e.stopPropagation()
+                    if (e.key === "Enter")
+                        if (props.SaveNote(title)) setTitle("")
                 }
                 } />
             <FaCheckSquare
                 size="2em"
                 onClick={(e) => {
-                    //! save the title 
+                    e.preventDefault()
+                    e.stopPropagation()
+                    if (props.SaveNote(title)) setTitle("")
                 }
                 } />
         </div >
