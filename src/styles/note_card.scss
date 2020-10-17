@@ -3,7 +3,8 @@
 
 .note_card {
     border-radius: 0.5em;
-    margin: 0.5em;
+    // margin: 0.5em;
+    width: 90%;
     margin-top: 1em;
     margin-bottom: 1em;
     border: 0.1rem solid $card_Border_color;
@@ -11,14 +12,12 @@
 
     &-title {
         padding-top: 0.5em;
-        margin: auto 0.2em;
+        margin: auto 0.5em;
         word-wrap: break-word;
     }
 
     &-body {
-        margin: 0.8em;
-        margin-right: 0.2em;
-        margin-left: 0.2em;
+        margin: 0.8em 0.5em;
         font-size: small;
         filter: opacity(50%);
     }

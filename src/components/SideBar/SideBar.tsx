@@ -15,12 +15,11 @@ interface Props {
 
 // TODO: Old notes
 // *** : add card for each note 
-
 // *** : edit old one
 //     - edit title 
-// *** : delete old one
 // *** : search for old note by title
 // *** : update old note 
+///// *** : delete old one
 
 
 const SideBar = (props: Props) => {

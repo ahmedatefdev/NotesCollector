@@ -60,6 +60,10 @@
 .note_cards_container {
     position: relative;
     transition: 0.5s ease-in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     &--full_height {
         top: -6%;
     }
