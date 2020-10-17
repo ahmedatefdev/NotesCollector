@@ -111,7 +111,7 @@ class Main extends Component<Props, State> {
         return (
             <NoteFunctions.Provider value={{ DeleteNote: this.DeleteNote, EditNoteBody: this.EditNoteBody, RenameNote: this.RenameNote }}>
                 <div className="layout">
-                    <Header />
+                    <Header handelSideBar={this.handelSideBar} noteTitle={this.state.currentNote?.title}  sideBarIsVisible={this.state.sideBarIsVisible}/>
                     <SideBar sideBarIsVisible={this.state.sideBarIsVisible} SaveNote={this.SaveNote} notes={this.state.notes} />
                     <Content
                         handelSideBar={this.handelSideBar}

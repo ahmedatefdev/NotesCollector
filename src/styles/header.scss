@@ -1,11 +1,80 @@
 @import "colors";
+@import "helper";
 
 .header {
+    // z-index: 5;
     position: relative;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
     height: 5%;
     width: 100%;
-    background-color: $green_success;
+    background-color: $sidebar_color;
+
+    &-left_side {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+        width: 20%;
+        height: 100%;
+        padding: 0;
+    }
+
+    &-logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+        strong {
+            // font-size: small;
+            word-wrap: break-word;
+        }
+    }
+    &-sidebar_toggle {
+        animation: 0.2s;
+        transition: $main_transition;
+        position: relative;
+        padding: 0;
+        margin: 0 !important;
+        background-color: transparent;
+        border: 0;
+        &:hover {
+            cursor: pointer;
+        }
+        min-width: 30px;
+    }
+
+    &-sidebar_toggle--close {
+        transform: rotateY(-180deg);
+    }
+    &-sidebar_toggle--open {
+        transform: rotateY(0deg);
+    }
+
+    &-note_title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        width: 80%;
+
+        h2 {
+            margin: 0;
+        }
+    }
 }
-.button_primary{
-    
+
+@media screen and (max-width: 900px) {
+    .header-left_side {
+        width: 40%;
+    }
+    .header-note_title {
+        width: 60%;
+    }
 }
