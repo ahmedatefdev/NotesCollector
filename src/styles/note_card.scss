@@ -9,7 +9,9 @@
     margin-bottom: 1em;
     border: 0.1rem solid $card_Border_color;
     background-color: #ffffff;
-
+    &:hover {
+        cursor: pointer;
+    }
     &-title {
         padding-top: 0.5em;
         margin: auto 0.5em;
