@@ -54,6 +54,9 @@ class Main extends Component<Props, State> {
         if (oldNotes !== null && oldNotes !== undefined) this.setState({ ...this.state, notes: JSON.parse(oldNotes) as Note[] })
     }
 
+    ChangeCurrentNote = (note: Note) => {
+        this.setState({ ...this.state, currentNote: note })
+    }
 
     SaveNote(title: string): boolean {
         if (!this.isTitleValued(title)) return false
@@ -75,10 +78,12 @@ class Main extends Component<Props, State> {
         return true
     }
 
-    EditNoteBody = (newBody: string) => {
-        const newNotes = this.state.notes.filter((note) => this.state.currentNote!.title !== note.title).concat([{ ...this.state.currentNote!, body: newBody }])
-        this.updateLocalStorageNotes(newNotes)
-        this.setState({ ...this.state, notes: newNotes })
+    EditNoteBody = (newBody: string = "") => {
+        const note = this.state.notes.find((note) => this.state.currentNote!.title === note.title)
+        if (!note || !this.state.currentNote) return false
+        note.body = newBody
+        this.updateLocalStorageNotes(this.state.notes)
+        this.setState({ ...this.state, currentNote: { ...this.state.currentNote, body: newBody } })
         return true
     }
 
@@ -109,7 +114,7 @@ class Main extends Component<Props, State> {
 
     render() {
         return (
-            <NoteFunctions.Provider value={{ DeleteNote: this.DeleteNote, EditNoteBody: this.EditNoteBody, RenameNote: this.RenameNote }}>
+            <NoteFunctions.Provider value={{ ChangeCurrentNote: this.ChangeCurrentNote, DeleteNote: this.DeleteNote, EditNoteBody: this.EditNoteBody, RenameNote: this.RenameNote }}>
                 <div className="layout">
                     <Header />
                     <SideBar sideBarIsVisible={this.state.sideBarIsVisible} SaveNote={this.SaveNote} notes={this.state.notes} />
