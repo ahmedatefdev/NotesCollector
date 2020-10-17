@@ -7,6 +7,7 @@ import { Note } from '../types/Note'
 import { LocalStorageKeys } from '../enums/LocalStorageKeys'
 import ErrorBoundary from './ErrorBoundary'
 import { NoteFunctionsProvider } from '../types/Context'
+import debounce from '../helpers'
 
 interface Props {
 
@@ -51,7 +52,10 @@ class Main extends Component<Props, State> {
 
     LoadNotes = () => {
         const oldNotes = localStorage.getItem(LocalStorageKeys.NOTES)
-        if (oldNotes !== null && oldNotes !== undefined) this.setState({ ...this.state, notes: JSON.parse(oldNotes) as Note[] })
+        if (oldNotes !== null && oldNotes !== undefined) {
+            const notes = JSON.parse(oldNotes)
+            this.setState({ ...this.state, notes: notes as Note[], currentNote: notes[0] })
+        }
     }
 
     ChangeCurrentNote = (note: Note) => {
@@ -78,14 +82,26 @@ class Main extends Component<Props, State> {
         return true
     }
 
-    EditNoteBody = (newBody: string = "") => {
-        const note = this.state.notes.find((note) => this.state.currentNote!.title === note.title)
-        if (!note || !this.state.currentNote) return false
-        note.body = newBody
-        this.updateLocalStorageNotes(this.state.notes)
+    EditNoteBody = (newBody: string | undefined) => {
+
+        // const note = this.state.notes.find((note) => this.state.currentNote!.title === note.title)
+        if (!this.state.currentNote || !newBody || newBody === this.state.currentNote.body) return false
+        // note.body = newBody
+        // this.updateLocalStorageNotes(this.state.notes)
         this.setState({ ...this.state, currentNote: { ...this.state.currentNote, body: newBody } })
+        this.deBounceUpdate(this.state.currentNote.title, newBody)
         return true
     }
+    deBounceUpdate =
+        debounce((title: string, newBody: string) => {
+            console.log('Bounce');
+            if (title !== this.state.currentNote?.title) return
+            const note = this.state.notes.find((note) => this.state.currentNote!.title === note.title)
+            if (!note || !this.state.currentNote) return false
+            note.body = newBody
+            this.updateLocalStorageNotes(this.state.notes)
+            this.setState({ ...this.state })
+        }, 1500)
 
     DeleteNote = (oldNote: Note) => {
         if (!window.confirm(`Are you sure you want to delete note with (${oldNote.title})`)) return false
@@ -114,7 +130,7 @@ class Main extends Component<Props, State> {
 
     render() {
         return (
-            <NoteFunctions.Provider value={{ ChangeCurrentNote: this.ChangeCurrentNote, DeleteNote: this.DeleteNote, EditNoteBody: this.EditNoteBody, RenameNote: this.RenameNote }}>
+            <NoteFunctions.Provider value={{ ChangeCurrentNote: this.ChangeCurrentNote, DeleteNote: this.DeleteNote, RenameNote: this.RenameNote }}>
                 <div className="layout">
                     <Header />
                     <SideBar sideBarIsVisible={this.state.sideBarIsVisible} SaveNote={this.SaveNote} notes={this.state.notes} />
@@ -123,6 +139,7 @@ class Main extends Component<Props, State> {
                         sideBarIsVisible={this.state.sideBarIsVisible}
                         currentNote={this.state.currentNote}
                         notes={this.state.notes}
+                        EditNoteBody={this.EditNoteBody}
                     />
                 </div>
             </NoteFunctions.Provider>
