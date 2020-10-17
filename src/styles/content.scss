@@ -2,14 +2,14 @@
 @import "helper";
 
 .content {
-    color: white;
-    background-color: $dark;
     position: absolute;
+    word-wrap: break-word;
+    overflow: hidden;
     top: 5%;
     transition: $main_transition;
     height: 95%;
     &-show_button {
-        @extend .main_button;
+        // @extend .main_button;
         top: 0;
         left: 0%;
         &:hover {
@@ -32,7 +32,7 @@
         width: 100%;
     }
     .content--is_minimum {
-        left: 60%;
-        width: 40%;
+        left: 80%;
+        width: 20%;
     }
 }

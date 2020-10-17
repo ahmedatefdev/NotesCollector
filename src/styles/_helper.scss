@@ -1,11 +1,13 @@
 $main_transition: 0.5s;
 $sidebar_main_width: 20%;
 
-.main_button {
-    padding: 0.5em 1em;
-    border-radius: 5px;
-    box-shadow: 0 0 0 0;
-    border: 0;
-    color: $dark;
-    transition: 0.2s;
+@import "buttons.scss";
+
+.size {
+    &-l {
+        font-size: large;
+    }
+    &-ll {
+        font-size: larger;
+    }
 }

@@ -27,31 +27,44 @@ const SideBar = (props: Props) => {
     let classNames = "side_bar "
     classNames += props.sideBarIsVisible ? `side_bar--is-visible` : `side_bar--is-hidden`
     const [title, setTitle] = useState("")
+    const [addTitle, setAddTitle] = useState(false)
     return (
         <div className={classNames}>
             {/* <Search /> */}
-            <button className="">Add new Note <span><FaPlusSquare size="2em" /></span> </button>
-            <input
-                type="text"
-                name="title"
-                onChange={
-                    (event) => {
-                        setTitle(event.target.value)
+            <button className="btn btn-primary size-l add_note-button" onClick={() => { setAddTitle(!addTitle) }
+            }>{addTitle ? "Cancel" : "Add new Note"}</button>
+            <div className={"add_note-container " + (addTitle ? "add_note-container--visible" : "add_note-container--hidden")}>
+                <input
+                    type="text"
+                    name="title"
+                    onChange={
+                        (event) => {
+                            setTitle(event.target.value)
+                        }
                     }
-                }
-                value={title}
-                onKeyUp={(e) => {
-                    if (e.key === "Enter")
-                        if (props.SaveNote(title)) setTitle("")
-                }
-                } />
-            <FaCheckSquare
-                size="2em"
-                onClick={(e) => {
-                    if (props.SaveNote(title)) setTitle("")
-                }
-                } />
-            {props.notes.map((note, i) => <NoteCard note={note} key={i} />)}
+                    value={title}
+                    onKeyUp={(e) => {
+                        if (e.key === "Enter")
+                            if (props.SaveNote(title)) {
+                                setTitle("")
+                                setAddTitle(false)
+                            }
+                    }
+                    } />
+                <FaCheckSquare
+                    color="#36a6d6"
+                    size="2em"
+                    onClick={(e) => {
+                        if (props.SaveNote(title)) {
+                            setTitle("")
+                            setAddTitle(false)
+                        }
+                    }
+                    } />
+            </div>
+            <div className={"note_cards_container " + (!addTitle ? "note_cards_container--full_height" : "note_cards_container--minimum_height")}>
+                {props.notes.map((note, i) => <NoteCard note={note} key={i} />)}
+            </div>
         </div >
     )
 }

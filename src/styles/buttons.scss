@@ -1,0 +1,23 @@
+.btn {
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    box-shadow: 0 0 0 0;
+    border: 0;
+    color: $dark;
+    transition: 0.2s;
+    font-weight: 600;
+    &:hover {
+        filter: brightness(90%);
+        cursor: pointer;
+    }
+
+    &-primary {
+        background-color: #36a6d6;
+        color: white;
+    }
+
+    &-warning {
+        background-color: $red_Wrong;
+        color: white;
+    }
+}
