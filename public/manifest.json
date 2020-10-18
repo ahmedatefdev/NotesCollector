@@ -1,6 +1,6 @@
 {
-  "short_name": "NoteCollector",
-  "name": "Note collector app",
+  "short_name": "Notes Collector",
+  "name": "Notes collector app",
   "description": "An note app that can make edit save and delete notes local's",
   "start_url": "/",
   "scope": "/",
