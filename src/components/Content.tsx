@@ -4,7 +4,6 @@ import { FaListAlt } from 'react-icons/fa'
 import { Note } from '../types/Note'
 import ReactQuill from 'react-quill'
 interface Props {
-    handelSideBar: () => void
     sideBarIsVisible: boolean
     currentNote: Note | null,
     notes: Note[],
@@ -45,7 +44,6 @@ const Content = (props: Props) => {
     ]
     return (
         <div className={classNames}>
-            <FaListAlt onClick={props.handelSideBar} size="2em" />
             <div className="content-quill" style={{ height: "100%" }}>
                 {props.currentNote ? <ReactQuill style={{ height: "100%" }} value={props.currentNote.body || ""} onChange={changeBody
                 }

@@ -9,17 +9,7 @@ interface Props {
     SaveNote: (title: string) => boolean
     notes: Note[]
 }
-///// DONE: New Note
-///// *** : add title 
-///// *** : save new note for future update
 
-// TODO: Old notes
-// *** : add card for each note 
-// *** : edit old one
-//     - edit title 
-// *** : search for old note by title
-// *** : update old note 
-///// *** : delete old one
 
 
 const SideBar = (props: Props) => {

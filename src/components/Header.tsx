@@ -1,7 +1,7 @@
 import React from 'react'
-import '../styles/header.scss'
-import logo from '../img/logo.svg'
 import { FaAngleDoubleRight } from 'react-icons/fa'
+import logo from '../img/logo.svg'
+import '../styles/header.scss'
 
 interface Props {
     noteTitle: string | undefined
@@ -29,7 +29,7 @@ export const Header = ({ noteTitle, handelSideBar, sideBarIsVisible }: Props) =>
             </div>
             <div className="header-note_title">
                 <h2>
-                    {noteTitle ? noteTitle : "........"}
+                    {noteTitle ? noteTitle.length > 20 ? noteTitle.substring(0, 20) + "..." : noteTitle : "........"}
                 </h2>
             </div>
         </div>

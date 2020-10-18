@@ -2,24 +2,18 @@ import React, { useContext } from 'react'
 import { Note } from '../../types/Note'
 import { NoteFunctions } from '../Main'
 import '../../styles/note_card.scss'
+import { removeHTMLTags } from '../../helpers'
 
 interface Props {
     note: Note
 }
 
-///// DONE: Note Card
-///// *** : show Title
-///// *** : rename Note 
-///// *** : Delete Note
-
-
-// TODO: Style the Card Note
-// *** 
 
 const NoteCard = (props: Props) => {
     const { title, body, order } = props.note
     const noteFunctions = useContext(NoteFunctions)
 
+    const bodyToShow = removeHTMLTags(body)
     return (
         <div className="note_card" onClick={(e) => {
             noteFunctions?.ChangeCurrentNote(props.note)
@@ -30,7 +24,7 @@ const NoteCard = (props: Props) => {
                 <strong >{title}</strong>
             </p>
             {/* <h2 className="note_card-title">{title}</h2> */}
-            <p className="note_card-body">{body.length > 80 ? body.substring(0, 80) + "..." : body}</p>
+            <p className="note_card-body">{bodyToShow.length > 80 ? bodyToShow.substring(0, 80) + "..." : bodyToShow}</p>
             <div className="note_card-buttons">
                 <button className="note-delete btn btn-warning" onClick={(e) => {
                     e.preventDefault()

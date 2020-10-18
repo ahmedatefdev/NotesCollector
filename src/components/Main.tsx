@@ -18,17 +18,6 @@ interface State {
     currentNote: Note | null
 }
 
-///// DONE: make responsive sidebar 
-///// *** : add button for hide the side bar
-///// *** : auto hide in mobile when the width is low
-/////     - when change make the content take all the width
-
-///// DONE: save new note
-///// *** : make type for notes
-///// *** : save note in the local storage
-///// *** : begin edit the new one 
-
-// TODO: add main colors to all sections
 
 export const NoteFunctions = React.createContext<NoteFunctionsProvider | null>(null)
 
@@ -121,6 +110,10 @@ class Main extends Component<Props, State> {
             alert("this title is used before you have to use new title")
             return false
         }
+        else if (title.trim().length > 25) {
+            alert("this title is very long place chooses another one")
+            return false
+        }
         return true
     }
 
@@ -130,12 +123,12 @@ class Main extends Component<Props, State> {
 
     render() {
         return (
+
             <NoteFunctions.Provider value={{ ChangeCurrentNote: this.ChangeCurrentNote, DeleteNote: this.DeleteNote, RenameNote: this.RenameNote }}>
                 <div className="layout">
-                    <Header handelSideBar={this.handelSideBar} noteTitle={this.state.currentNote?.title}  sideBarIsVisible={this.state.sideBarIsVisible}/>
+                    <Header handelSideBar={this.handelSideBar} noteTitle={this.state.currentNote?.title} sideBarIsVisible={this.state.sideBarIsVisible} />
                     <SideBar sideBarIsVisible={this.state.sideBarIsVisible} SaveNote={this.SaveNote} notes={this.state.notes} />
                     <Content
-                        handelSideBar={this.handelSideBar}
                         sideBarIsVisible={this.state.sideBarIsVisible}
                         currentNote={this.state.currentNote}
                         notes={this.state.notes}
