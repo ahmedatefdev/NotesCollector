@@ -45,16 +45,17 @@ const Content = (props: Props) => {
     return (
         <div className={classNames}>
             <div className="content-quill" style={{ height: "100%" }}>
-                {props.currentNote ? <ReactQuill style={{ height: "100%" }} value={props.currentNote.body || ""} onChange={changeBody
-                }
+                {props.currentNote ? <ReactQuill style={{ height: "100%" }} value={props.currentNote.body || ""}
+                    onChange={changeBody}
                     modules={modules}
                     formats={formats}
                     bounds={'.app'}
-                    placeholder={"Write something..."} /> : props.notes.length > 0 ? <h1>
-                        Begin editing by select note from the sidebar!
-                    </h1> : <h1>
-                            Add new note to begin editing!
-                    </h1>}
+                    placeholder={"Write something..."} /> :
+                    <h1 style={{ textAlign: "center" }}>{props.notes.length > 0 ?
+                        "Begin editing by select note from the sidebar!"
+                        :
+                        "Add new note to begin editing!"
+                    }</h1>}
             </div>
         </div>
     )
