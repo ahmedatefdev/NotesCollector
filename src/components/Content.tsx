@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react'
 import '../styles/content.scss'
-import { FaListAlt } from 'react-icons/fa'
 import { Note } from '../types/Note'
 import ReactQuill from 'react-quill'
 interface Props {

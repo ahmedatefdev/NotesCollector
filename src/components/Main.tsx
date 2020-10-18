@@ -5,7 +5,6 @@ import SideBar from './SideBar/SideBar'
 import '../styles/layout.scss'
 import { Note } from '../types/Note'
 import { LocalStorageKeys } from '../enums/LocalStorageKeys'
-import ErrorBoundary from './ErrorBoundary'
 import { NoteFunctionsProvider } from '../types/Context'
 import debounce from '../helpers'
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../../styles/side_bar.scss'
-import { FaPlusSquare, FaCheckSquare } from 'react-icons/fa'
+import { FaCheckSquare } from 'react-icons/fa'
 import { Note } from '../../types/Note'
 import NoteCard from './NoteCard'
 
