@@ -1,4 +1,4 @@
-# Notes Collector
+# Notes Collector 📒
 
 application can be used to
 
